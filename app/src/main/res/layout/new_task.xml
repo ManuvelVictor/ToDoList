@@ -3,23 +3,21 @@
     android:layout_height="wrap_content">
 
     <EditText
+        android:id="@+id/newTaskText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/newTaskText"
+        android:autofillHints="New Task"
         android:background="@null"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:hint="@string/new_task"
-        android:autofillHints="New Task">
-    </EditText>
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <Button
+        android:id="@+id/newTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/newTaskButton"
         android:layout_below="@id/newTaskText"
         android:layout_alignParentEnd="true"
-        android:textSize="16sp"
         android:text="@string/save"
-        android:textAllCaps="false">
-    </Button>
+        android:textAllCaps="false"
+        android:textSize="16sp" />
 </RelativeLayout>
