@@ -64,10 +64,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         task.setTask(cur.getString(cur.getColumnIndex(TASK)));
                         task.setStatus(cur.getInt(cur.getColumnIndex(STATUS)));
                         taskList.add(task);
-                        } while (cur.moveToNext());
-                    }
+                    } while (cur.moveToNext());
                 }
-            } finally {
+            }
+        } finally {
             db.endTransaction();
             assert cur != null;
             cur.close();
@@ -78,17 +78,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void updateStatus(int id, int status) {
         ContentValues cv = new ContentValues();
         cv.put(STATUS, status);
-        db.update(TODO_TABLE, cv, ID + "=?", new String[] {String.valueOf(id)});
+        db.update(TODO_TABLE, cv, ID + "=?", new String[]{String.valueOf(id)});
     }
 
     public void updateTask(int id, String task) {
         ContentValues cv = new ContentValues();
         cv.put(TASK, task);
-        db.update(TODO_TABLE, cv, ID + "=?", new String[] {String.valueOf(id)});
+        db.update(TODO_TABLE, cv, ID + "=?", new String[]{String.valueOf(id)});
     }
 
     public void deleteTask(int id) {
-        db.delete(TODO_TABLE, ID + "=?", new String[] {String.valueOf(id)});
+        db.delete(TODO_TABLE, ID + "=?", new String[]{String.valueOf(id)});
     }
 
 }

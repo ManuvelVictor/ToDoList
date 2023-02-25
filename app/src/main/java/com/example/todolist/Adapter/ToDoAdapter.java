@@ -1,6 +1,7 @@
 package com.example.todolist.Adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,6 +77,17 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     public void setTasks(List<ToDoModel> todoList) {
         this.todoList = todoList;
         notifyDataSetChanged();
+    }
+
+    public Context getContext() {
+        return activity;
+    }
+
+    public void deleteItem(int position) {
+        ToDoModel item = todoList.get(position);
+        db.deleteTask(item.getId());
+        todoList.remove(position);
+        notifyItemRemoved(position);
     }
 
     public void editItem(int position) {

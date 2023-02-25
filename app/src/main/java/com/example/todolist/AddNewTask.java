@@ -61,7 +61,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         boolean isUpdate = false;
         final Bundle bundle = getArguments();
         if (bundle != null) {
-            isUpdate =  true;
+            isUpdate = true;
             String task = bundle.getString("task");
             newTaskText.setText(task);
             if (task.length() > 0) {
@@ -109,7 +109,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
     public void onDismiss(@NonNull DialogInterface dialog) {
         Activity activity = getActivity();
         if (activity instanceof DialogCloseListener) {
-            ((DialogCloseListener)activity).handleDialogClose(dialog);
+            ((DialogCloseListener) activity).handleDialogClose(dialog);
         }
     }
 }
