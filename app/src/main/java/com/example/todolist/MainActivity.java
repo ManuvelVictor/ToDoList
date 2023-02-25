@@ -4,15 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.example.todolist.Adapter.ToDoAdapter;
 import com.example.todolist.Model.ToDoModel;
+import com.example.todolist.Utils.DatabaseHandler;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogCloseListener{
+
+    private List<ToDoModel> taskList;
+    private ToDoAdapter tasksAdapter;
+    private DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,40 +32,28 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        List<ToDoModel> taskList = new ArrayList<>();
+        db = new DatabaseHandler(this);
+        db.openDatabase();
+
+        taskList = new ArrayList<>();
 
         RecyclerView taskRecyclerView = findViewById(R.id.taskRecyclerView);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ToDoAdapter taskAdapter = new ToDoAdapter(this);
-        taskRecyclerView.setAdapter(taskAdapter);
+        tasksAdapter = new ToDoAdapter(db, MainActivity.this);
+        taskRecyclerView.setAdapter(tasksAdapter);
 
-        ToDoModel task = new ToDoModel();
-        task.setTask("This is a Test Task");
-        task.setStatus(0);
-        task.setId(1);
+        taskList = db.getAllTasks();
+        Collections.reverse(taskList);
+        tasksAdapter.setTasks(taskList);
 
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
+    }
 
-        taskAdapter.setTasks(taskList);
-
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public void handleDialogClose(DialogInterface dialog) {
+        taskList =  db.getAllTasks();
+        Collections.reverse(taskList);
+        tasksAdapter.setTasks(taskList);
+        tasksAdapter.notifyDataSetChanged();
     }
 }
