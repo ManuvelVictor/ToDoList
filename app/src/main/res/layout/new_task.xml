@@ -1,23 +1,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/cyberYellow"
+    android:backgroundTint="@color/cyberYellow">
 
     <EditText
         android:id="@+id/newTaskText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:autofillHints="New Task"
-        android:background="@null"
+        android:paddingStart="15dp"
+        android:inputType="textCapSentences"
+        android:background="@drawable/rounded_edittext"
         android:hint="@string/new_task"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/cyberYellow"
+        android:textColorHint="@color/cyberYellow"
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:id="@+id/newTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newTaskText"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/newTaskText"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/save"
         android:textAllCaps="false"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="12dp" />
 </RelativeLayout>

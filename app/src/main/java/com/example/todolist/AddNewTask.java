@@ -80,10 +80,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().equals("")) {
                     newTaskSaveButton.setEnabled(false);
-                    newTaskSaveButton.setTextColor(color.white);
+                    newTaskSaveButton.setTextColor(color.cyberYellow);
                 } else {
                     newTaskSaveButton.setEnabled(true);
-                    newTaskSaveButton.setTextColor(color.white);
+                    newTaskSaveButton.setTextColor(color.cyberYellow);
                 }
             }
 
