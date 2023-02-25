@@ -53,10 +53,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        newTaskText = requireView().findViewById(id.newTaskButton);
-
-        db = new DatabaseHandler(getActivity());
-        db.openDatabase();
+        newTaskText = requireView().findViewById(R.id.newTaskText);
+        newTaskSaveButton = requireView().findViewById(R.id.newTaskButton);
 
         boolean isUpdate = false;
         final Bundle bundle = getArguments();
@@ -68,6 +66,9 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), color.cyberYellow));
             }
         }
+
+        db = new DatabaseHandler(getActivity());
+        db.openDatabase();
         newTaskText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
